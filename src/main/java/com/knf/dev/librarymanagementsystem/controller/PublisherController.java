@@ -1,11 +1,15 @@
 package com.knf.dev.librarymanagementsystem.controller;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import java.util.Collections;
+import java.util.Comparator;
 
 import com.knf.dev.librarymanagementsystem.entity.Publisher;
 import com.knf.dev.librarymanagementsystem.service.PublisherService;
@@ -22,13 +26,20 @@ public class PublisherController {
 
 	@RequestMapping("/publishers")
 	public String findAllPublishers(Model model) {
+		//task 1 example solution
+		// List<Publisher> results = publisherService.findAllPublishers();
+		// model.addAttribute("publishers", results.subList(0, 3));
+
+		//task 2 example solution
+		// Collections.sort(results, Comparator.comparing(Publisher::getName));
+		// model.addAttribute("publishers", results);
 
 		model.addAttribute("publishers", publisherService.findAllPublishers());
 		return "list-publishers";
 	}
 
 	@RequestMapping("/publisher/{id}")
-	public String findPublisherById(@PathVariable("id") Long id, Model model) {
+	public String findPublisherById(@PathVariable("id") Long id, Model model) {x
 
 		model.addAttribute("publisher", publisherService.findPublisherById(id));
 		return "list-publisher";
