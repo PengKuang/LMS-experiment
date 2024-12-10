@@ -26,20 +26,21 @@ public class PublisherController {
 
 	@RequestMapping("/publishers")
 	public String findAllPublishers(Model model) {
-		//task 1 example solution
+		//task 3.1 example solution
 		// List<Publisher> results = publisherService.findAllPublishers();
 		// model.addAttribute("publishers", results.subList(0, 3));
 
-		//task 2 example solution
-		// Collections.sort(results, Comparator.comparing(Publisher::getName));
-		// model.addAttribute("publishers", results);
+		//task 3.2 example solution
+		List<Publisher> results = publisherService.findAllPublishers();
+		Collections.sort(results, Comparator.comparing(Publisher::getName));
+		model.addAttribute("publishers", results);
 
-		model.addAttribute("publishers", publisherService.findAllPublishers());
+//		model.addAttribute("publishers", publisherService.findAllPublishers());
 		return "list-publishers";
 	}
 
 	@RequestMapping("/publisher/{id}")
-	public String findPublisherById(@PathVariable("id") Long id, Model model) {x
+	public String findPublisherById(@PathVariable("id") Long id, Model model) {
 
 		model.addAttribute("publisher", publisherService.findPublisherById(id));
 		return "list-publisher";
